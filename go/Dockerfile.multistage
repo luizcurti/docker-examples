@@ -1,0 +1,11 @@
+FROM golang:1.16-alpine3.8 AS multistage
+
+RUN apk add --no-cache --update git
+
+WORKDIR /go/src/app
+COPY . .
+ENTRYPOINT [ "go", "run", "hello.go" ]
+
+
+FROM alpine:3.8
+ENTRYPOINT [ "go", "run", "hello.go" ]
